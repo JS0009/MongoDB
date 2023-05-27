@@ -19,5 +19,8 @@
   "homepage": "https://github.com/JS0009/MongoDB#readme",
   "dependencies": {
     "mongodb": "^5.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

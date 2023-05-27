@@ -1,30 +1,37 @@
+
+import http from 'http';
 import { MongoClient } from 'mongodb';
 
 const uri = "mongodb://localhost:27017/mydatabase";
 
-MongoClient.connect(uri, function (err, client) {
-    if (err) throw err;
-
+const server = http.createServer((req, res) => {
     // Получение базы данных
-    const db = client.db("mydatabase");
-    console.log("Database created!");
-
-    // Выбор коллекции
-    const col = db.collection("customers");
-    console.log("Collection created!");
-
-    // Вставка документа в коллекцию
-    const mydoc = { name: "John", address: "Highway 37" };
-    col.insertOne(mydoc, function (err, res) {
+    MongoClient.connect(uri, function (err, client) {
         if (err) throw err;
 
-        // Печать ID вставленного документа
-        console.log("Document inserted with ID: " + res.insertedId);
+        const db = client.db("mydatabase");
 
-        // Закрытие подключения
-        client.close();
+        // Выбор коллекции
+        const collection = db.collection("customers");
+
+        // Вставка документа в коллекцию
+        const mydoc = { name: "John", address: "Highway 37" };
+        collection.insertOne(mydoc, function (err, result) {
+            if (err) throw err;
+
+            // Проверка, что документ был успешно добавлен
+            if (result.insertedCount === 1) {
+                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.write(`Document inserted with ID: ${result.insertedId}`);
+                res.end();
+
+                // Закрытие подключения
+                client.close();
+            }
+        });
     });
 });
-// 51.195.31.187 / 32
-// uY95hxkmfJtupZ8V
-// mongodb://magadb:uY95hxkmfJtupZ8V@51.195.31.187:32/mydatabase
+
+server.listen(3000, () => {
+    console.log(`Server running at http://localhost:3000/`);
+});
