@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-const uri = "mongodb://magadb:uY95hxkmfJtupZ8V@51.195.31.187:32/mydatabase";
+const uri = "mongodb://localhost:27017/mydatabase";
 
 MongoClient.connect(uri, function (err, client) {
     if (err) throw err;
