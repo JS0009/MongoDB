@@ -1,0 +1,23 @@
+{
+  "name": "mongodb",
+  "version": "1.0.0",
+  "description": "MongoDB &amp;&amp; Node JS",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JS0009/MongoDB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JS0009/MongoDB/issues"
+  },
+  "homepage": "https://github.com/JS0009/MongoDB#readme",
+  "dependencies": {
+    "mongodb": "^5.5.0"
+  }
+}
